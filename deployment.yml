@@ -1,0 +1,31 @@
+# Версия API Kubernetes
+apiVersion: apps/v1
+# Указываем тип объекта, который нужно создать. Т.е. Deployment
+kind: Deployment
+
+# Этот блок содержит метаданные для Deployment. В данном случае - имя Deployment app-deployment
+metadata:
+  name: app-deployment
+
+spec:
+  # Здесь определяется количество реплик приложения, которые должны быть запущены
+  replicas: 3
+  # Этот блок определяет, какие поды управляются Deployment
+  selector:
+    # Здесь указывается, что Deployment должен управлять подами, у которых есть метка app: myapp
+    matchLabels:
+      app: my-app
+  # Шаблон для создания подов, которыми управляет Deployment
+  template:
+    metadata:
+      # Устанавливаем метку app: myapp для всех создаваемых подов
+      labels:
+        app: my-app
+    # Здесь определяется контейнер, который будет запущен в каждой реплике
+    spec:
+      containers:
+      - name: server-app
+        image: selvnv/vtech:1.0
+        ports:
+        # Указываем порт, который контейнер должен открыть для внешнего доступа
+        - containerPort: 8000
