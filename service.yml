@@ -14,6 +14,6 @@ spec:
     - protocol: TCP
       # С порта 80
       port: 80
-      # На порт 8000
+      # На порт 8000 (Порт, который прослушивает контейнер)
       targetPort: 8000
   type: NodePort
