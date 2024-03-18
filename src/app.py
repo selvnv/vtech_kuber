@@ -1,4 +1,5 @@
 from flask import Flask
+import socket
 
 app = Flask(__name__)
 
@@ -6,7 +7,8 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     # Возвращаем контент в виде строки
-    return 'Hello World!'
+    ip_address = socket.gethostbyname(socket.gethostname())
+    return f'Hello World from: {ip_address}\n'
 
 
 if __name__ == '__main__':
